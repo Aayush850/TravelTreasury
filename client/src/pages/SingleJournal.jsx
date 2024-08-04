@@ -70,9 +70,10 @@ const Wrapper = styled.div`
     margin-right: 0.5rem;
   }
   img {
-    object-fit: cover;
+    object-fit: contain;
     width: 80%;
     border-radius: 20px;
+    height: 700px;
   }
   .journal-info {
     display: flex;

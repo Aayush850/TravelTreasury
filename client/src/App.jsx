@@ -8,6 +8,7 @@ import CreateJournal from "./pages/CreateJournal";
 import SingleJournal from "./pages/SingleJournal";
 import MyJournals from "./pages/MyJournals";
 import EditJournal from "./pages/EditJournal";
+import Error from "./pages/Error";
 import { loader as homeLoader } from "./pages/SharedLayout";
 import { loader as myJournalLoader } from "./pages/MyJournals";
 import { loader as singleJournalLoader } from "./pages/SingleJournal";
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <SharedLayout />,
     loader: homeLoader,
+    errorElement: <Error />,
     children: [
       {
         index: true,

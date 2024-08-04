@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Form, Link, redirect } from "react-router-dom";
+import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import image from "../assets/images/background.jpg";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
@@ -20,6 +20,10 @@ export const action = async ({ request }) => {
 };
 
 const Login = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  console.log(isSubmitting);
+
   return (
     <Wrapper>
       <div className="container">
@@ -53,7 +57,11 @@ const Login = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="submit-btn">
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isSubmitting}
+                >
                   Login
                 </button>
                 <p>
@@ -94,6 +102,7 @@ const Wrapper = styled.div`
       rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     border-radius: 10px;
     background-color: #fff;
+    margin: 1rem 0;
   }
   .quote {
     background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),

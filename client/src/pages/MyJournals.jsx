@@ -56,7 +56,15 @@ const Wrapper = styled.div`
 
   @media (max-width: 768px) {
     .journals-container {
+      grid-template-columns: repeat(2, 1fr);
+      margin: 1rem 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .journals-container {
       grid-template-columns: 1fr;
+      margin: 1rem 0;
     }
   }
 `;
