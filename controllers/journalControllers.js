@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Journal from "../models/journalModel.js";
 import cloudindary from "cloudinary";
-import { promises as fs } from "fs";
+import { formatImage } from "../middlewares/multerMiddleware.js";
 
 const getAllJournals = async (req, res) => {
   const journals = await Journal.find({ createdBy: req.user.userId });
@@ -10,10 +10,11 @@ const getAllJournals = async (req, res) => {
 
 const createJournal = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  const response = await cloudindary.v2.uploader.upload(req.file.path, {
+  const file = formatImage(req.file);
+
+  const response = await cloudindary.v2.uploader.upload(file, {
     folder: "travel-treasury",
   });
-  await fs.unlink(req.file.path);
   req.body.image = response.secure_url;
   req.body.imagePublicId = response.public_id;
   const journal = await Journal.create(req.body);
@@ -27,10 +28,10 @@ const getJournal = async (req, res) => {
 
 const updateJournal = async (req, res) => {
   if (req.file) {
-    const response = await cloudindary.v2.uploader.upload(req.file.path, {
+    const file = formatImage(req.file);
+    const response = await cloudindary.v2.uploader.upload(file, {
       folder: "travel-treasury",
     });
-    await fs.unlink(req.file.path);
     req.body.image = response.secure_url;
     req.body.imagePublicId = response.public_id;
   }

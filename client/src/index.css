@@ -30,6 +30,10 @@ a,
 button {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+p {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 img {
   width: 100%;
 }
