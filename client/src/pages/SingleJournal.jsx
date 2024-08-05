@@ -73,7 +73,7 @@ const Wrapper = styled.div`
     object-fit: contain;
     width: 80%;
     border-radius: 20px;
-    height: 700px;
+    max-height: 700px;
   }
   .journal-info {
     display: flex;
